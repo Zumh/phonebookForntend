@@ -79,10 +79,10 @@ const App = () => {
     const id = samePerson.id
     
     const changedNumber = { ...samePerson, number: newPhone }
-  
     personService
       .update(id, changedNumber).then(returnedPerson => {
 
+        
 
         setPersons(persons.map(person => person.id !== id ? person : returnedPerson))
         setMessage(`Updated ${samePerson.name}`)
@@ -189,7 +189,7 @@ const App = () => {
   // filter persons by search name in the list
   // if searchName is empty, return all persons
   // search is case insensitive
-  const phonesToShow = searchName.length === 0 ? persons : persons.filter(person => person.name.toLowerCase() === searchName.toLowerCase())
+  const phonesToShow = searchName.length === 0 ? persons : persons.filter(person => person.name.toLowerCase().includes(searchName.toLowerCase()))
 
   const handlePhonesToShow = phonesToShow.map(person => <Person key={person.id} deleteHandler={deleteHandler} person={person}/>)
   
